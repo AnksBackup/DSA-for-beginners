@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+int interpolation_search(int arr[20],int n,int val)
+{
+           int l=0,h=n-1,pos;
+           while(l<=h && val>=arr[l] &&val<=arr[h])
+           {
+                      if(l==h)
+                      {
+                                 if(arr[l]==val)
+                                            return l;
+                                 return -1;
+                      }
+                      pos=l+(((h-l)/(arr[h]-arr[l]))*(val-arr[l]));
+                      if(arr[pos]==val)
+                                 return pos;
+                      else if(arr[pos]<val)
+                                 l=pos+1;
+                      else
+                                 h=pos-1;
+           }
+}
+int main()
+{
+           int n,arr[20],pos,val;
+           cout<<"Enter the number of elements:";
+           cin>>n;
+           cout<<"Enter elements:";
+           for(int i=0;i<n;i++)
+           {
+                      cin>>arr[i];
+           }
+           cout<<"Enter value:";
+           cin>>val;
+           pos=interpolation_search(arr,n,val);
+           if(pos==-1)
+                      cout<<"Not found";
+           else
+                      cout<<"Found at index:"<<pos;
+           return 0;
+}
