@@ -1,0 +1,35 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int kth_element(vector<int>num,int n,int x)
+{
+           int val;
+           for(int i=0;i<n;i++)
+           {
+                      for(int j=i+1;j<n;j++)
+                      {
+                                 if(num[i]>=num[j])
+                                 {
+                                            val=num[i];
+                                            num[i]=num[j];
+                                            num[j]=val;
+                                 }
+                      }
+           }
+           return num[x-1];
+}
+int main()
+{
+           int n,k,num;
+           cout<<"Enter the number of elements:";
+           cin>>n;
+           vector<int>a(n);
+           cout<<"Enter elements:";
+           for(int i=0;i<n;i++)
+                      cin>>a[i];
+           cout<<"Enter the value of k:";
+           cin>>k;
+           num=kth_element(a,n,k);
+           cout<<"Value of the kth element:"<<num;
+           return 0;
+}
